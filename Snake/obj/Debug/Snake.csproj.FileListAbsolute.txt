@@ -1,0 +1,6 @@
+C:\Users\Евгений\OneDrive\C# Level 1\Подготовка\Snake\Snake\bin\Debug\Snake.exe.config
+C:\Users\Евгений\OneDrive\C# Level 1\Подготовка\Snake\Snake\bin\Debug\Snake.exe
+C:\Users\Евгений\OneDrive\C# Level 1\Подготовка\Snake\Snake\bin\Debug\Snake.pdb
+C:\Users\Евгений\OneDrive\C# Level 1\Подготовка\Snake\Snake\obj\Debug\Snake.csprojAssemblyReference.cache
+C:\Users\Евгений\OneDrive\C# Level 1\Подготовка\Snake\Snake\obj\Debug\Snake.exe
+C:\Users\Евгений\OneDrive\C# Level 1\Подготовка\Snake\Snake\obj\Debug\Snake.pdb
