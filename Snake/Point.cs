@@ -8,8 +8,11 @@ namespace Snake
 {
     class Point
     {
-        private int x;
-        private int y;
+        //private int x;
+        //private int y;
+        //  Временно делаем поля открытыми
+        public int x;
+        public int y;
         private char sym;
 
         public Point()
