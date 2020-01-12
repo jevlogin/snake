@@ -18,36 +18,44 @@ namespace Snake
     {
         const int MINCHAR = 33; // 'символ !'
         const int MAXCHAR = 42; // 'символ *'
-        const int MAXPOINT = 4; //  Сколько точек будет на экране
+        const int MAXPOINT = 10; //  Сколько точек будет на экране
         const int MINXY = 0;
-        const int MAXXY = 11;
-        const char HVLINE = '@';
+        const char HVLINE = '#';
+        const int WIGHT = 50;
+        const int HEIGHT = 20;
 
         static void Main(string[] args)
         {
-            //  Временно убираю такую реализацию... 
-            //  Буду использовать анонимные точки (объекты, классы)
-            //Point p1 = new Point(1, 3, '*');
-            //Point p2 = new Point(4, 5, '#');
+            // Установил рамки окна консоли.. Важный момент, есть какие-то невидимые символы, 
+            //  Подозреваю, что это символ переноса строки, поэтому граница чуть больше на 2 деления.
+            Console.SetWindowSize(WIGHT + 2, HEIGHT + 2);
+            Console.SetBufferSize(WIGHT + 2, HEIGHT + 2);
 
-            HorizontalLine hLine = new HorizontalLine(MINXY, MAXXY, MINXY, HVLINE);
+            HorizontalLine hLine = new HorizontalLine(MINXY, WIGHT, MINXY, HVLINE);
             hLine.Drow();
-            hLine = new HorizontalLine(MINXY, MAXXY, MAXXY, HVLINE);
+            hLine = new HorizontalLine(MINXY, WIGHT, HEIGHT, HVLINE);
             hLine.Drow();
-            VerticalLine vLine = new VerticalLine(MINXY, MINXY, MAXXY, HVLINE);
+            VerticalLine vLine = new VerticalLine(MINXY, MINXY, HEIGHT, HVLINE);
             vLine.Drow();
-            vLine = new VerticalLine(MAXXY, MINXY, MAXXY, HVLINE);
+            vLine = new VerticalLine(WIGHT, MINXY, HEIGHT, HVLINE);
             vLine.Drow();
 
 
             //  Для работы с рандомными числами...
             Random rnd = new Random();
 
-            List<int> numlist = new List<int>();
+            //  создаем список чисел по оси X
+            List<int> numListX = new List<int>();
             //  Забиваем список числами
-            for (int i = 0; i < MAXPOINT * 2; i++)
+            for (int i = 0; i < MAXPOINT; i++)
             {
-                numlist.Add(rnd.Next(1, 10));
+                numListX.Add(rnd.Next(1, WIGHT));
+            }
+            //  создаем список чисел по оси Y
+            List<int> numListY = new List<int>();
+            for (int i = 0; i < MAXPOINT; i++)
+            {
+                numListY.Add(rnd.Next(1, HEIGHT));
             }
 
             //  Создаем список символов
@@ -61,7 +69,7 @@ namespace Snake
             for (int i = 0; i < MAXPOINT; i++)
             {
                 // Буду использовать анонимные точки (объекты, классы)
-                pList.Add(new Point(numlist[i], numlist[i + 1], charList[rnd.Next(i, charList.Count)]));
+                pList.Add(new Point(numListX[i], numListY[i], charList[rnd.Next(i, charList.Count)]));
             }
 
             //  Выводим список точек на экран
