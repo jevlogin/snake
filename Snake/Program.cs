@@ -1,62 +1,63 @@
 ﻿using System;
+using System.Collections.Generic;
+
+/*
+ * 
+ * Евгений Логинов, 
+ * 89013827902
+ * JEVLOGIN * <-- Ник во всех сетях. Например vk.com/jevlogin
+ * студент 
+ * Факультет
+ * Geek University разработки игр
+ * 
+ */
 
 namespace Snake
 {
     class Program
     {
+        const int MINCHAR = 33; // '!'
+        const int MAXCHAR = 42; // '!'
+        const int MAXPOINT = 4; //  Сколько точек будет на экране
+
         static void Main(string[] args)
         {
-
+            // Временно убираю такую реализацию... Буду использовать анонимные точки (объекты, классы)
             Point p1 = new Point(1, 3, '*');
-            p1.Draw();
-
             Point p2 = new Point(4, 5, '#');
-            p2.Draw();
 
-            int x = 1;
-            Func1(x);
-            Console.WriteLine($"Func1 x={x}");
+            //  Для работы с рандомными числами...
+            Random rnd = new Random();
 
-            Func2(x);
-            Console.WriteLine($"Func2 x={x}");
+            List<int> numlist = new List<int>();
+            //  Забиваем список числами
+            for (int i = 0; i < MAXPOINT * 2; i++)
+            {
+                numlist.Add(rnd.Next(0, 10));
+            }
 
-            Func3(x);
-            Console.WriteLine($"Func3 x={x}");
+            //  Создаем список символов
+            List<char> charList = new List<char>();
+            for (int i = MINCHAR; i <= MAXCHAR; i++)
+            {
+                charList.Add((char)i);  //  кастуем число к символу
+            }
 
-            Move(p1, 10, 10);
-            Console.WriteLine($"Move(p1, 10, 10) p1.x = {p1.x}, p1.y = {p1.y}");
+            List<Point> pList = new List<Point>();
+            for (int i = 0; i < MAXPOINT; i++)
+            {
+                // Буду использовать анонимные точки (объекты, классы)
+                pList.Add(new Point(numlist[i], numlist[i + 1], charList[rnd.Next(i, charList.Count)]));
+            }
 
-            Reset(p2);
-            Console.WriteLine($"Reset(p2) p2.x = {p2.x}, p2.y = {p2.y}");
+            //  Выводим список точек на экран
+            foreach (var p in pList)
+            {
+                p.Draw();
+            }
 
             Console.ReadKey();
         }
 
-        private static void Reset(Point p)
-        {
-            p = new Point();
-            //  Здесь переменная p2 останется без изменений.
-        }
-
-        private static void Move(Point p, int dx, int dy)
-        {
-            p.x = p.x + dx;
-            p.y = p.y + dy;
-        }
-
-        private static void Func3(int x)
-        {
-            x++;
-        }
-
-        private static void Func2(int val)
-        {
-            val++;
-        }
-
-        private static void Func1(int x)
-        {
-
-        }
     }
 }
