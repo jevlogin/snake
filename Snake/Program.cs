@@ -19,12 +19,26 @@ namespace Snake
         const int MINCHAR = 33; // 'символ !'
         const int MAXCHAR = 42; // 'символ *'
         const int MAXPOINT = 4; //  Сколько точек будет на экране
+        const int MINXY = 0;
+        const int MAXXY = 11;
+        const char HVLINE = '@';
 
         static void Main(string[] args)
         {
-            // Временно убираю такую реализацию... Буду использовать анонимные точки (объекты, классы)
-            Point p1 = new Point(1, 3, '*');
-            Point p2 = new Point(4, 5, '#');
+            //  Временно убираю такую реализацию... 
+            //  Буду использовать анонимные точки (объекты, классы)
+            //Point p1 = new Point(1, 3, '*');
+            //Point p2 = new Point(4, 5, '#');
+
+            HorizontalLine hLine = new HorizontalLine(MINXY, MAXXY, MINXY, HVLINE);
+            hLine.Drow();
+            hLine = new HorizontalLine(MINXY, MAXXY, MAXXY, HVLINE);
+            hLine.Drow();
+            VerticalLine vLine = new VerticalLine(MINXY, MINXY, MAXXY, HVLINE);
+            vLine.Drow();
+            vLine = new VerticalLine(MAXXY, MINXY, MAXXY, HVLINE);
+            vLine.Drow();
+
 
             //  Для работы с рандомными числами...
             Random rnd = new Random();
@@ -33,7 +47,7 @@ namespace Snake
             //  Забиваем список числами
             for (int i = 0; i < MAXPOINT * 2; i++)
             {
-                numlist.Add(rnd.Next(0, 10));
+                numlist.Add(rnd.Next(1, 10));
             }
 
             //  Создаем список символов
