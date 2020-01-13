@@ -17,9 +17,6 @@ namespace Snake
 {
     class Program
     {
-        const int MINCHAR = 33; // 'символ !'
-        const int MAXCHAR = 42; // 'символ *'
-        const int MAXPOINT = 10; //  Сколько точек будет на экране
         const int MINXY = 0;
         const char HVLINE = '#';
         const int WIGHT = 50;
