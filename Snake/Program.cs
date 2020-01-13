@@ -40,43 +40,9 @@ namespace Snake
             vLine = new VerticalLine(WIGHT, MINXY, HEIGHT, HVLINE);
             vLine.Drow();
 
-
-            //  Для работы с рандомными числами...
-            Random rnd = new Random();
-
-            //  создаем список чисел по оси X
-            List<int> numListX = new List<int>();
-            //  Забиваем список числами
-            for (int i = 0; i < MAXPOINT; i++)
-            {
-                numListX.Add(rnd.Next(1, WIGHT));
-            }
-            //  создаем список чисел по оси Y
-            List<int> numListY = new List<int>();
-            for (int i = 0; i < MAXPOINT; i++)
-            {
-                numListY.Add(rnd.Next(1, HEIGHT));
-            }
-
-            //  Создаем список символов
-            List<char> charList = new List<char>();
-            for (int i = MINCHAR; i <= MAXCHAR; i++)
-            {
-                charList.Add((char)i);  //  кастуем число к символу
-            }
-
-            List<Point> pList = new List<Point>();
-            for (int i = 0; i < MAXPOINT; i++)
-            {
-                // Буду использовать анонимные точки (объекты, классы)
-                pList.Add(new Point(numListX[i], numListY[i], charList[rnd.Next(i, charList.Count)]));
-            }
-
-            //  Выводим список точек на экран
-            foreach (var p in pList)
-            {
-                p.Draw();
-            }
+            Point p1 = new Point(4, 5, '*');
+            Snake snake = new Snake(p1, 4, Direction.RIGHT);
+            snake.Drow();
 
             Console.ReadKey();
         }
