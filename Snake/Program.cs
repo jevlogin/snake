@@ -18,9 +18,9 @@ namespace Snake
     class Program
     {
         const int MINXY = 0;
-        const char HVLINE = '#';
-        const int WIGHT = 50;
-        const int HEIGHT = 20;
+        const char HVLINE = '*';
+        const int WIGHT = 100;
+        const int HEIGHT = 40;
 
         static void Main(string[] args)
         {
@@ -29,34 +29,34 @@ namespace Snake
             Console.SetWindowSize(WIGHT + 2, HEIGHT + 2);
             Console.SetBufferSize(WIGHT + 2, HEIGHT + 2);
 
-            HorizontalLine hLine = new HorizontalLine(MINXY, WIGHT, MINXY, HVLINE);
-            hLine.Drow();
-            hLine = new HorizontalLine(MINXY, WIGHT, HEIGHT, HVLINE);
-            hLine.Drow();
-            VerticalLine vLine = new VerticalLine(MINXY, MINXY, HEIGHT, HVLINE);
-            vLine.Drow();
-            vLine = new VerticalLine(WIGHT, MINXY, HEIGHT, HVLINE);
-            vLine.Drow();
+            //  отрисовка рамки
+            HorizontalLine upLine = new HorizontalLine(MINXY, WIGHT, MINXY, HVLINE);
+            HorizontalLine downLine = new HorizontalLine(MINXY, WIGHT, HEIGHT, HVLINE);
+            VerticalLine leftLine = new VerticalLine(MINXY, MINXY, HEIGHT, HVLINE);
+            VerticalLine rightLine = new VerticalLine(WIGHT, MINXY, HEIGHT, HVLINE);
+            upLine.Draw();
+            downLine.Draw();
+            leftLine.Draw();
+            rightLine.Draw();
 
             Point p1 = new Point(4, 5, '*');
             Snake snake = new Snake(p1, 4, Direction.RIGHT);
-            snake.Drow();
-            snake.Move();
-            //  Pause 300 ms
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
+            snake.Draw();
 
-
-            Console.ReadKey();
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    //  Читаем клавишу нажатую пользователем
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    //  Передаем клавишу в класс Snake для обработки
+                    snake.HandleKey(key.Key);
+                }
+                Thread.Sleep(100);
+                snake.Move();
+            }
         }
 
+        
     }
 }
