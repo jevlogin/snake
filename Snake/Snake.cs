@@ -46,7 +46,7 @@ namespace Snake
             //  Создали новую точку на основании предыдущей головы
             Point nextPoint = new Point(head);
             //  Сдвинули новую точку, на 1 единицу. Тем самым реализовав сдвиг
-            nextPoint.Move(1, this.direction);
+            nextPoint.Move(1, direction);
             //  Вернули значение новой точки
             return nextPoint;
         }
@@ -69,6 +69,22 @@ namespace Snake
             {
                 direction = Direction.DOWN;
             }
+        }
+
+        public bool Eat(Point food)
+        {
+            Point head = GetNextPoint();
+            if (head.IsHit(food))
+            {
+                food.sym = head.sym;
+                pList.Add(food);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

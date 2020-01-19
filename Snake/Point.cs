@@ -9,7 +9,7 @@ namespace Snake
         //  Временно делаем поля открытыми
         public int x;
         public int y;
-        private char sym;
+        public char sym;
 
         public Point()
         {
@@ -66,6 +66,11 @@ namespace Snake
         public override string ToString()
         {
             return x + ", " + y + ", " + sym;
+        }
+
+        internal bool IsHit(Point food)
+        {
+            return food.x == this.x && food.y == this.y;
         }
     }
 
